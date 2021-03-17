@@ -27,8 +27,8 @@ rl.on('line', lineString => {
 rl.on('close', () => {
     for (let [key, value] of prefectureDataMap) value.change = value.popu15 / value.popu10;
     const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => pair2[1].change - pair1[1].change);
-    const rankingStrings = rankingArray.map(([key, value]) => `\t${key}: ${value.popu10}=>${value.popu15} 変化率: ${value.change}\n`);
-    console.log("\n都道府県別15～19歳の人口変化率ランキング！！\n");
+    const rankingStrings = rankingArray.map(([key, value], i) => `\t${i + 1}位: ${key} ${value.popu10}=>${value.popu15} 変化率: ${value.change}\n`);
+    console.log("\n都道府県別15～19歳の人口増加率ランキング！！\n");
     console.log(...rankingStrings);
-    console.log(`一位は${rankingArray[0][0]}でした！\n`);
+    console.log(`1位は${rankingArray[0][0]}でした！\n`);
 });
